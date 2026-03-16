@@ -40,7 +40,9 @@ system_prompt = evaluator.get_system_prompt()
 
 # הערכת טקסט עם בדיקה מושבתת (אופציונלי)
 my_prompt = "אני רוצה לפתח קומפוננטה של הרשמה לאתר עם גוגל."
-result = evaluator.evaluate(my_prompt, audit_disabled=True)
+result = evaluator.evaluate(my_prompt)
+// result = evaluator.evaluate(my_prompt, audit_disabled=True)  // בפיתוח
+
 
 print("תוצאת ההערכה:", result)
 
