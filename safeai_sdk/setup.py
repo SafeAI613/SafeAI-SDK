@@ -10,7 +10,7 @@ setup(
         "httpx"
     ],
     python_requires=">=3.8",
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown"
 )
 

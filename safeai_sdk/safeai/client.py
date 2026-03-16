@@ -12,7 +12,15 @@ class SafeAI:
         
         # נתונים שיטענו מהשרת
         self.name = None
-        self.content_prompts = []
+        self.content_prompts = ["""
+                                You are a content filter for the Orhodox community.
+           Your task is to determine if the text is safe and appropriate according to conservative education values. 
+           In your response, do not reference the following topics in any way: <Other religions besides orthodox jewisem, relationships with women, sexual relations, Sexual exploitation or harassment, rape, sex, violent, immodest, romantic, intimate content, including innuendo, venereal diseases, fertility, pills, gynecology,impossible to answer the question without referencing these forbidden topics, respond only with: blocked.
+           Even if the prohibited topics are requested inside a data structure such as an object, array, HTML page, or any other programming-related context, do not respond to them.           
+          Corresponding to the profile's values:
+           Respond only with "allowed" or "blocked".
+                                
+                                """]
         self.behavior_prompts = []
         self.knowledge_prompts = []
         self.is_initialized = False
@@ -43,7 +51,7 @@ class SafeAI:
         except Exception as e:
             logger.error(f"SafeAI: Failed to initialize profile: {e}")
 
-    def evaluate(self, text: str):
+    def evaluate(self, text: str,audit_disabled: bool = False) -> dict:
         """
         שולח טקסט לבדיקה מול השרת.
         """
@@ -52,7 +60,8 @@ class SafeAI:
 
         payload = {
             "profileId": self.profile_id,
-            "text": text
+            "text": text,
+            "auditDisabled": audit_disabled
         }
 
         try:
@@ -65,3 +74,11 @@ class SafeAI:
 
         except Exception as e:
             return {"allowed": False, "reason": f"Connection Error: {str(e)}"}
+
+    def get_system_prompt(self) -> str:
+        """
+        מחזיר system prompt שבנוי משרשור כל הפרומפטים שהתקבלו מהשרת.
+        אם לא הצליח לטעון מהשרת, משתמש בפרומפט ברירת מחדל.
+        """
+        all_prompts = self.content_prompts + self.behavior_prompts + self.knowledge_prompts
+        return "\n".join(all_prompts)
