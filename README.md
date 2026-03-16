@@ -10,6 +10,9 @@ pip install safeai-sdk
 ```
 
 ### מהקובץ המקומי .whl
+
+[צפה ב‑Release ב‑GitHub](https://github.com/SafeAI613/SafeAI-SDK/releases/tag/v0.1.0)
+
 אם יש לך קובץ .whl שנבנה מקומית:
 ```bash
 pip install path/to/safeai_sdk-0.1.0-py3-none-any.whl
