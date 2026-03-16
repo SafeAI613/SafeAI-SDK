@@ -30,7 +30,7 @@ import openai
 from safeai import SafeAI
 
 # יצירת מופע של SafeAI עם מזהה פרופיל
-evaluator = SafeAI(profile_id="69add18e588e9d005a875804")
+evaluator = SafeAI()
 
 # אתחול
 evaluator.initialize()
