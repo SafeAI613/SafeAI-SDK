@@ -4,9 +4,9 @@ Python SDK עבור שרת סינון SafeAI.
 
 ## התקנה
 
-### מה-PyPI (אם זמין)
+### מה-PyPI (עדיין לא זמין)
 ```bash
-pip install safeai-sdk
+pip install safeai613
 ```
 
 ### מהקובץ המקומי .whl
